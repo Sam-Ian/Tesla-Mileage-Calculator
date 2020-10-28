@@ -1,3 +1,6 @@
+print("4")
+print("5")
+print("6")
 print("This was added last, whilst other computer was also making changes")
 print("Hello World")
 print("Hi Sam, I added this bit of code")
