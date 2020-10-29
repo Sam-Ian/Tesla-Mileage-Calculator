@@ -35,7 +35,7 @@ print ("Sam is " +str(sam_age))
 print ("Eolia is " +str(eolia_age))
 print ("Jenny is " +str(jenny_age))
 
-print ("Their combined age is" +str(combined_age))
+print ("Their combined age is: " +str(combined_age))
 
 print ("The oldest is " + oldest_age)
 
