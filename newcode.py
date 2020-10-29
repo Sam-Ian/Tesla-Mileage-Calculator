@@ -19,5 +19,14 @@ jenny_age = 53
 
 combined_age = sam_age + ian_age +eolia_age + jenny_age
 print (combined_age)
+print ("Ian is " +str(ian_age))
+print ("Sam is " +str(sam_age))
+print ("Eolia is " +str(eolia_age))
+print ("Jenny is " +str(jenny_age))
+
+print ("Their combined age is:" +str(combined_age))
+
+print ("The oldest is: ")
+
 
 
