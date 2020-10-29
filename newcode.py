@@ -12,6 +12,7 @@
 #
 #
 #
+Eolia_age = 23
 Ian_age = 50
 Sam_age = 22
 
