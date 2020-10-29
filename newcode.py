@@ -12,12 +12,12 @@
 #
 #
 #
-Eolia_age = 23
-Ian_age = 50
-Sam_age = 22
-Jenny_age = 53
+eolia_age = 23
+ian_age = 50
+sam_age = 22
+jenny_age = 53
 
-combined_age = Sam_age + Ian_age
+combined_age = sam_age + ian_age +eolia_age + jenny_age
 print (combined_age)
 
 
