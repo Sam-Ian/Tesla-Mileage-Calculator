@@ -1,6 +1,6 @@
 # What do we want to collaborate on?
 #
-#
+#Hi Sam. Thought I would check to see if you had made any changes overnight and you had! Very good!
 #
 #
 # Sam's Functions go here
