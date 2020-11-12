@@ -120,10 +120,10 @@ print(elapsed_days)
 
 #Add elapsed_days to the new CSV file
 
-# with open('TeslaMileage_coded.csv', 'a') as tesla_mileage_dictapp:
-#     dictapp_tesla_miles = csv.writer(tesla_mileage_dictapp, fieldnames=fields)
+with open('TeslaMileage_coded.csv', 'a') as tesla_mileage_dictapp:
+    dictapp_tesla_miles = csv.writer(tesla_mileage_dictapp)
 
-#     for elapsed_day in elapsed_days:   
-#         dictapp_tesla_miles.writerow([elapsed_day])
+    for elapsed_day in elapsed_days:   
+        dictapp_tesla_miles.writerow([3])
 
 
