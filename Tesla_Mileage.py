@@ -80,9 +80,9 @@ with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_dictread:
 
 
 with open('TeslaMileage_dict_coded.csv', 'w') as tesla_mileage_dictwrite:
-    
-    dictwrite_tesla_miles = csv.DictWriter(tesla_mileage_dictwrite, fieldnames=fields)
     fields = ['Date', 'Mileage', 'Mileage in period', 'Elapsed days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weekly Allowance', 'Week remaining']
+    dictwrite_tesla_miles = csv.DictWriter(tesla_mileage_dictwrite, fieldnames=fields)
+    
     dictwrite_tesla_miles.writeheader()
     for item in full_dictread_data:
         dictwrite_tesla_miles.writerow(item)
