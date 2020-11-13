@@ -5,7 +5,6 @@ import csv
 
 #READING CSV FILE WITH DICTREADER:
 
-
 with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_read:
     read_tesla_miles = csv.DictReader(tesla_mileage_read)
 
@@ -112,7 +111,6 @@ projected_mileage = [round(num) for num in projected_mileage]
 
 #WEEKS REMAINING
 
-
 weeks_remaining = []
 end_date = '20/12/2023'
 
@@ -149,7 +147,6 @@ for i in range(len(list_of_mileage)):
 
 # (REMAINING MILES / REMAINING WEEKS)
 
-
 weekly_allowance = [0 for num in weeks_remaining]
 
 for i in range(len(weekly_allowance)):
@@ -172,8 +169,8 @@ elapsed_days.insert(0, 'Elapsed days')
 average_daily_mileage.insert(0, 'Average Daily Mileage')
 average_annual_mileage.insert(0, 'Average Annual Mileage')
 projected_mileage.insert(0, 'Projected Mileage @ 20/12/2023')
-weeks_remaining.insert(0, 'Week remaining')
-remaining_miles.insert(0, 'Remaining miles')
+weeks_remaining.insert(0, 'Weeks Remaining')
+remaining_miles.insert(0, 'Remaining Miles')
 weekly_allowance.insert(0, 'Weekly Allowance')
 print(list_of_dates)
 print(list_of_mileage)
@@ -187,13 +184,11 @@ print(remaining_miles)
 print(weekly_allowance)
 
 
-
-
 #WRITING CSV FILE WITH DICTWRITER
 
 
 with open('TeslaMileage_coded.csv', 'w') as tesla_mileage_write:
-    fields = ['Date', 'Mileage', 'Mileage in period', 'Elapsed days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weekly Allowance', 'Week remaining']
+    fields = ['Date', 'Mileage', 'Mileage in period', 'Elapsed days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weeks Remaining', 'Remaining Miles' 'Weekly Allowance']
     write_tesla_miles = csv.DictWriter(tesla_mileage_write, fieldnames=fields)
     
     write_tesla_miles.writeheader()
