@@ -27,9 +27,9 @@ with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_read:
         full_read_data.append(row)
 
 #         CREATE AN ARRAY OF A SINGLE COLUMN
-#         list_of_dates.append(row[0])
-#         list_of_mileage.append(row[1])
-#         list_of_mileage_in_period.append(row[2])
+        list_of_dates.append(row[0])
+        list_of_mileage.append(row[1])
+        list_of_mileage_in_period.append(row[2])
 
 # print(list_of_dates, '\n')
 # print(list_of_mileage, '\n')
@@ -92,9 +92,12 @@ with open('TeslaMileage_coded.csv', 'w') as tesla_mileage_dictwrite:
 
 ################################################################################################
 
-#APPENDING ELAPSED DAYS WITH WRITER
+#FORMULAS FOR OTHER COLUMNS
 
-#Elapsed Days
+################################################################################################
+
+#ELAPSED DAYS
+
 from datetime import datetime
 
 #Find difference between two dates
@@ -116,14 +119,122 @@ for i in range(len(elapsed_days)):
     if i != 0:
         elapsed_days[i] += elapsed_days[i-1]
 
-print(elapsed_days)
 
-#Add elapsed_days to the new CSV file
+#####################################################
 
-with open('TeslaMileage_coded.csv', 'a') as tesla_mileage_dictapp:
-    dictapp_tesla_miles = csv.writer(tesla_mileage_dictapp)
+#AVERAGE DAILY MILEAGE
 
-    for elapsed_day in elapsed_days:   
-        dictapp_tesla_miles.writerow([3])
+#Convert mileage list into 'int' type
 
+dict_list_of_mileage = list(map(int, dict_list_of_mileage))
+
+#Creating empty array for average daily mileage
+average_daily_mileage = [0 for num in elapsed_days]
+
+#Looping through (mileage / elapsed days) and adding the sum to average daily miles
+for i in range(len(average_daily_mileage)):
+    try:
+        average_daily_mileage[i] = dict_list_of_mileage[i] / elapsed_days[i]
+    except ZeroDivisionError:
+        average_daily_mileage[i] = 0
+
+#Rounding average_daily_miles list to 8 decimal places
+
+average_daily_mileage = [round(num, 8) for num in average_daily_mileage]
+
+
+#####################################################
+
+#AVERAGE ANNUAL MILEAGE
+
+#Average Annual Mileage = Average Daily Mileage * 365
+
+average_annual_mileage = [0 for num in average_daily_mileage]
+
+for i in range(len(average_daily_mileage)):
+    average_annual_mileage[i] = average_daily_mileage[i] * 365
+
+#Rounding numbers to nearest int
+
+average_annual_mileage = [round(num) for num in average_annual_mileage]
+
+
+#####################################################
+
+#Projected Mileage @ 20/12/2023
+
+#Projected Mileage @ 20/12/2023 = Average Daily Mileage * 1460
+
+projected_mileage = [0 for num in average_daily_mileage]
+
+for i in range(len(average_daily_mileage)):
+    projected_mileage[i] = average_daily_mileage[i] * 1460
+
+#Rounding numbers to nearest int
+
+projected_mileage = [round(num) for num in projected_mileage]
+
+
+#####################################################
+
+#WEEKS REMAINING
+
+
+weeks_remaining = []
+end_date = '20/12/2023'
+
+for i in range(len(dict_list_of_dates)):
+    if i == 0:
+        weeks_remaining.append(0)    
+    else:
+        date_format = "%d/%m/%Y"
+        end_week = datetime.strptime(end_date, date_format)
+        list_of_dates = datetime.strptime(dict_list_of_dates[i], date_format)
+        weeks_remaining_sum = (end_week - list_of_dates)
+        weeks_remaining.append(weeks_remaining_sum.days / 7)
+
+#Rounding weeks to a whole week
+
+weeks_remaining = [round(num) for num in weeks_remaining]
+
+
+#####################################################
+
+#WEEKLY ALLOWANCE
+
+# ((40,000 / 208) + (40,000 - Projected Mileage)) / Weeks Remaining
+
+
+weekly_allowance = [0 for num in weeks_remaining]
+
+for i in range(len(weekly_allowance)):
+    try:
+        weekly_allowance[i] = ((40000 / 198) + (40000 - projected_mileage[i])) / weeks_remaining[i]
+    except ZeroDivisionError:
+        weekly_allowance[i] = 0
+
+
+
+print(weekly_allowance)
+
+print(projected_mileage)
+print(weeks_remaining)
+
+
+#####################################################
+
+
+elapsed_days.insert(0, 'Elapsed days')
+average_daily_mileage.insert(0, 'Average Daily Mileage')
+average_annual_mileage.insert(0, 'Average Annual Mileage')
+projected_mileage.insert(0, 'Projected Mileage @ 20/12/2023')
+weeks_remaining.insert(0, 'Week remaining')
+# print(list_of_dates)
+# print(list_of_mileage)
+# print(list_of_mileage_in_period)
+# print(elapsed_days)
+# print(average_daily_mileage)
+# print(average_annual_mileage)
+# print(projected_mileage)
+# print(weeks_remaining)
 
