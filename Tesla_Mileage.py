@@ -209,7 +209,7 @@ weekly_allowance = [0 for num in weeks_remaining]
 
 for i in range(len(weekly_allowance)):
     try:
-        weekly_allowance[i] = ((40000 / 198) + (40000 - projected_mileage[i])) / weeks_remaining[i]
+        weekly_allowance[i] = ((40000 / weeks_remaining[1]) + (40000 - projected_mileage[i])) / weeks_remaining[i-1]
     except ZeroDivisionError:
         weekly_allowance[i] = 0
 
