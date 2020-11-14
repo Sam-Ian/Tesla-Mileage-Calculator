@@ -6,7 +6,7 @@ import time
 
 #READING CSV FILE WITH DICTREADER:
 
-with open('TeslaMileage.csv', newline='') as tesla_mileage_read:
+with open('Tesla_Mileage.csv', newline='') as tesla_mileage_read:
     read_tesla_miles = csv.DictReader(tesla_mileage_read)
 
     list_of_dates = []
@@ -231,7 +231,7 @@ new_csv_data = [{'Date': date, 'Mileage': mileage, 'Mileage in Period': mileagep
 #WRITING CSV FILE WITH DICTWRITER
 
 
-with open('TeslaMileage.csv', 'w', newline='') as tesla_mileage_write:
+with open('Tesla_Mileage.csv', 'w', newline='') as tesla_mileage_write:
     fields = ['Date', 'Mileage', 'Mileage in Period', 'Elapsed Days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weeks Remaining', 'Remaining Miles', 'Weekly Allowance']
     write_tesla_miles = csv.DictWriter(tesla_mileage_write, fieldnames=fields)
     
