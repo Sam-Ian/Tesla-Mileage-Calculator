@@ -6,7 +6,7 @@ import time
 
 #READING CSV FILE WITH DICTREADER:
 
-with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_read:
+with open('TeslaMileage_new.csv', newline='') as tesla_mileage_read:
     read_tesla_miles = csv.DictReader(tesla_mileage_read)
 
     list_of_dates = []
@@ -38,42 +38,29 @@ print("Welcome back Ian, today's date is: " + datetime.today().strftime('%d/%m/%
 print('\n')
 
 while True:
-    new_mileage = (input("Please enter your Tesla's total current mileage: "))
+
+    new_mileage = (input("Please enter your Tesla's current total mileage reading: "))
     print('\n')
     y_n_statement = input("You typed in '" + new_mileage + "'. If this is correct please type 'y'. To cancel type 'n': ")
     print('\n')
-    if y_n_statement == 'y':
-        list_of_mileage.append((new_mileage))
-        list_of_dates.append(datetime.today().strftime('%d/%m/%Y'))
-        print("Thank you, we are adding the updated mileage to your database now.", '\n')
-        time.sleep(1)
-        print("Updating... ")
-        time.sleep(2)
-        print("Nearly there...")
-        time.sleep(1)
-        print("Doing a few more calculations...", '\n')
-        time.sleep(1)
-        print("ERROR! Your computer will self destruct in: ", '\n')
-        time.sleep(3)
-        print('5')
-        time.sleep(1)
-        print('4')
-        time.sleep(1)
-        print('3')
-        time.sleep(1)
-        print('2')
-        time.sleep(1)
-        print('1', '\n')
-        time.sleep(2)
-        print("...", '\n')
-        time.sleep(2)
-        print("Your database has now been updated.",'\n')
-        time.sleep(1)
-        print("Drive Safe!",'\n\n')
-        time.sleep(1)
-        break
-    elif y_n_statement == 'n':
-        continue
+    if y_n_statement == 'y' or y_n_statement == 'n':
+        if y_n_statement == 'y':
+            if (datetime.today().strftime('%d/%m/%Y')) in list_of_dates:
+                print("You have already submitted a mileage reading today. Please try again tomorrow.")
+                break 
+            else:
+                list_of_mileage.append((new_mileage))
+                list_of_dates.append(datetime.today().strftime('%d/%m/%Y'))
+                print("Thank you, we are adding the updated mileage to your database now.", '\n')
+                time.sleep(1)
+                print("Updating... ", '\n')
+                time.sleep(1)
+                print("Your database has now been updated.",'\n')
+                time.sleep(1)
+                print("Drive Safe!",'\n\n')   
+                break             
+        else:
+            continue
     else:
         print('\n')
         print("Please type 'y' for yes, or 'n' for no.")
