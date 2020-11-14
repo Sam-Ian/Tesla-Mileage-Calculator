@@ -162,36 +162,22 @@ weekly_allowance = [round(num, 1) for num in weekly_allowance]
 
 #####################################################
 
-list_of_dates.insert(0, 'Date')
-list_of_mileage.insert(0, 'Mileage')
-list_of_mileage_in_period.insert(0, 'Mileage in period')
-elapsed_days.insert(0, 'Elapsed days')
-average_daily_mileage.insert(0, 'Average Daily Mileage')
-average_annual_mileage.insert(0, 'Average Annual Mileage')
-projected_mileage.insert(0, 'Projected Mileage @ 20/12/2023')
-weeks_remaining.insert(0, 'Weeks Remaining')
-remaining_miles.insert(0, 'Remaining Miles')
-weekly_allowance.insert(0, 'Weekly Allowance')
-print(list_of_dates)
-print(list_of_mileage)
-print(list_of_mileage_in_period)
-print(elapsed_days)
-print(average_daily_mileage)
-print(average_annual_mileage)
-print(projected_mileage)
-print(weeks_remaining)
-print(remaining_miles)
-print(weekly_allowance)
 
+#Create dictionary of all column lists
+
+new_csv_data = [{'Date': date, 'Mileage': mileage, 'Mileage in Period': mileageperiod, 'Elapsed Days': elapseddays, 'Average Daily Mileage': averagedailymileage, 'Average Annual Mileage': averageannualmileage, 'Projected Mileage @ 20/12/2023': projectedmileage, 'Weeks Remaining': weeksremaining, 'Remaining Miles': remainingmiles, 'Weekly Allowance': weeklyallowance} for date, mileage, mileageperiod, elapseddays, averagedailymileage, averageannualmileage, projectedmileage, weeksremaining, remainingmiles, weeklyallowance in zip(list_of_dates, list_of_mileage, list_of_mileage_in_period, elapsed_days, average_daily_mileage, average_annual_mileage, projected_mileage, weeks_remaining, remaining_miles, weekly_allowance)]
+
+
+print(new_csv_data)
 
 #WRITING CSV FILE WITH DICTWRITER
 
 
-with open('TeslaMileage_coded.csv', 'w') as tesla_mileage_write:
-    fields = ['Date', 'Mileage', 'Mileage in period', 'Elapsed days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weeks Remaining', 'Remaining Miles' 'Weekly Allowance']
+with open('TeslaMileage_new.csv', 'w') as tesla_mileage_write:
+    fields = ['Date', 'Mileage', 'Mileage in Period', 'Elapsed Days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weeks Remaining', 'Remaining Miles', 'Weekly Allowance']
     write_tesla_miles = csv.DictWriter(tesla_mileage_write, fieldnames=fields)
     
     write_tesla_miles.writeheader()
-    for item in full_read_data:
+    for item in new_csv_data:
         write_tesla_miles.writerow(item)
 
