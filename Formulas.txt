@@ -1,9 +1,0 @@
-Date
-Mileage
-Mileage in period = Mileage - Previous Mileage
-Elapsed days = Date - Previous Date
-Average Daily Mileage = Mileage / Elapsed days
-Average Annual Mileage = Average Daily Mileage * 365
-Projected Mileage @ 20/12/2023 = Average Daily Mileage * 1460
-Weekly Allowance = ((40,000 / 208) + (40,000 - Projected Mileage)) / Weeks Remaining
-Week remaining = Previous week remaining - 1
