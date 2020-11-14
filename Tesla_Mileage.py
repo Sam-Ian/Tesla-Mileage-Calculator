@@ -1,5 +1,6 @@
 import csv
-
+from datetime import datetime
+import time
 
 ################################################################################################
 
@@ -10,7 +11,6 @@ with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_read:
 
     list_of_dates = []
     list_of_mileage = []
-    list_of_mileage_in_period = []
     full_read_data = []
 
     for row in read_tesla_miles:
@@ -18,8 +18,66 @@ with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_read:
 
         #CREATE AN ARRAY OF A SINGLE COLUMN
         list_of_dates.append(row['Date']) 
-        list_of_mileage_in_period.append(row['Mileage in period'])
         list_of_mileage.append(row['Mileage'])
+
+
+################################################################################################
+
+#USER INTERFACE FEATURE
+
+
+print("""  ______          __         __  ____ __                         ______      __           __      __            
+ /_  __/__  _____/ /___ _   /  |/  (_) /__  ____ _____ ____     / ____/___ _/ /______  __/ /___ _/ /_____  _____
+  / / / _ \/ ___/ / __ `/  / /|_/ / / / _ \/ __ `/ __ `/ _ \   / /   / __ `/ / ___/ / / / / __ `/ __/ __ \/ ___/
+ / / /  __(__  ) / /_/ /  / /  / / / /  __/ /_/ / /_/ /  __/  / /___/ /_/ / / /__/ /_/ / / /_/ / /_/ /_/ / /    
+/_/  \___/____/_/\__,_/  /_/  /_/_/_/\___/\__,_/\__, /\___/   \____/\__,_/_/\___/\__,_/_/\__,_/\__/\____/_/     
+                                               /____/                                                          """)
+
+print('\n')
+print("Welcome back Ian, today's date is: " + datetime.today().strftime('%d/%m/%Y') + ".")
+print('\n')
+
+while True:
+    new_mileage = (input("Please enter your Tesla's total current mileage: "))
+    print('\n')
+    y_n_statement = input("You typed in '" + new_mileage + "'. If this is correct please type 'y'. To cancel type 'n': ")
+    print('\n')
+    if y_n_statement == 'y':
+        list_of_mileage.append((new_mileage))
+        list_of_dates.append(datetime.today().strftime('%d/%m/%Y'))
+        print("Thank you, we are adding the updated mileage to your database now.", '\n')
+        time.sleep(1)
+        print("Updating... ")
+        time.sleep(2)
+        print("Nearly there...")
+        time.sleep(1)
+        print("Doing a few more calculations...", '\n')
+        time.sleep(1)
+        print("ERROR! Your computer will self destruct in: ", '\n')
+        time.sleep(3)
+        print('5')
+        time.sleep(1)
+        print('4')
+        time.sleep(1)
+        print('3')
+        time.sleep(1)
+        print('2')
+        time.sleep(1)
+        print('1', '\n')
+        time.sleep(2)
+        print("...", '\n')
+        time.sleep(2)
+        print("Your database has now been updated.",'\n')
+        time.sleep(1)
+        print("Drive Safe!",'\n\n')
+        time.sleep(1)
+        break
+    elif y_n_statement == 'n':
+        continue
+    else:
+        print('\n')
+        print("Please type 'y' for yes, or 'n' for no.")
+        print('\n')
 
 
 ################################################################################################
@@ -28,9 +86,26 @@ with open('TeslaMileageEdit.csv', newline='') as tesla_mileage_read:
 
 ################################################################################################
 
-#ELAPSED DAYS
+#MILEAGE IN PERIOD
 
-from datetime import datetime
+#MILEAGE - PREVIOUS MILEAGE
+
+#Convert mileage list into 'int' type
+
+list_of_mileage = list(map(int, list_of_mileage))
+
+list_of_mileage_in_period = [0 for item in list_of_mileage]
+
+for i in range(len(list_of_mileage)):
+    if i == 0:
+        list_of_mileage_in_period[i] = 0
+    else:
+        list_of_mileage_in_period[i] = list_of_mileage[i] - list_of_mileage[i-1]
+
+
+################################################################################################
+
+#ELAPSED DAYS
 
 #Find difference between two dates
 elapsed_days = []
@@ -55,10 +130,6 @@ for i in range(len(elapsed_days)):
 #####################################################
 
 #AVERAGE DAILY MILEAGE
-
-#Convert mileage list into 'int' type
-
-list_of_mileage = list(map(int, list_of_mileage))
 
 #Creating empty array for average daily mileage
 average_daily_mileage = [0 for num in elapsed_days]
@@ -168,7 +239,7 @@ weekly_allowance = [round(num, 1) for num in weekly_allowance]
 new_csv_data = [{'Date': date, 'Mileage': mileage, 'Mileage in Period': mileageperiod, 'Elapsed Days': elapseddays, 'Average Daily Mileage': averagedailymileage, 'Average Annual Mileage': averageannualmileage, 'Projected Mileage @ 20/12/2023': projectedmileage, 'Weeks Remaining': weeksremaining, 'Remaining Miles': remainingmiles, 'Weekly Allowance': weeklyallowance} for date, mileage, mileageperiod, elapseddays, averagedailymileage, averageannualmileage, projectedmileage, weeksremaining, remainingmiles, weeklyallowance in zip(list_of_dates, list_of_mileage, list_of_mileage_in_period, elapsed_days, average_daily_mileage, average_annual_mileage, projected_mileage, weeks_remaining, remaining_miles, weekly_allowance)]
 
 
-print(new_csv_data)
+# print(new_csv_data)
 
 #WRITING CSV FILE WITH DICTWRITER
 
