@@ -173,7 +173,7 @@ print(new_csv_data)
 #WRITING CSV FILE WITH DICTWRITER
 
 
-with open('TeslaMileage_new.csv', 'w') as tesla_mileage_write:
+with open('TeslaMileage_new.csv', 'w', newline='') as tesla_mileage_write:
     fields = ['Date', 'Mileage', 'Mileage in Period', 'Elapsed Days', 'Average Daily Mileage', 'Average Annual Mileage', 'Projected Mileage @ 20/12/2023', 'Weeks Remaining', 'Remaining Miles', 'Weekly Allowance']
     write_tesla_miles = csv.DictWriter(tesla_mileage_write, fieldnames=fields)
     
