@@ -1,6 +1,6 @@
 Date
 Mileage
-Mileage in period 
+Mileage in period = Mileage - Previous Mileage
 Elapsed days = Date - Previous Date
 Average Daily Mileage = Mileage / Elapsed days
 Average Annual Mileage = Average Daily Mileage * 365
