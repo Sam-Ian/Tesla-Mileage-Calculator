@@ -37,9 +37,11 @@ print('\n')
 print("Welcome back Ian, today's date is: " + datetime.today().strftime('%d/%m/%Y') + ".")
 print('\n')
 
+
 while True:
 
     new_mileage = (input("Please enter your Tesla's current total mileage reading: "))
+
     print('\n')
     y_n_statement = input("You typed in '" + new_mileage + "'. If this is correct please type 'y'. To cancel type 'n': ")
     print('\n')
